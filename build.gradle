@@ -1,0 +1,39 @@
+plugins {
+    id 'groovy'
+    id 'java'
+}
+
+group 'com.example'
+version '1.0'
+
+ext {
+    junitJupiterVersion = "5.8.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+
+dependencies {
+    implementation 'org.codehaus.groovy:groovy-all:3.0.8'
+    implementation "org.junit.jupiter:junit-jupiter:$junitJupiterVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+
+    implementation 'com.microsoft.playwright:playwright:1.15.0'
+
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties = [
+            "junit.jupiter.extensions.autodetection.enabled": true
+    ]
+}
+
+wrapper {
+    gradleVersion = "7.1"
+}
